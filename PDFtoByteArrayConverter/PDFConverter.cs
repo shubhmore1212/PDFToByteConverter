@@ -11,8 +11,9 @@ namespace PDFConverter
 
             foreach (byte b in PDFByteArray)
             {
-                Console.WriteLine(b);
+                Console.Write(b);
             }
+            Console.ReadLine();
         }
 
         static byte[]? PDFToByteArray(string pdfFilePath)
