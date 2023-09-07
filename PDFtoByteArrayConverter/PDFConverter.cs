@@ -17,7 +17,7 @@ namespace PDFConverter
                     break;
                 }
                 byte[]? PDFByteArray = PDFToByteArray(input);
-                WriteToFile(PDFByteArray);
+                WriteToFile(PDFByteArray,input);
             } while (true);
 
             Console.WriteLine();
@@ -41,9 +41,15 @@ namespace PDFConverter
             return null;
         }
 
-        static void WriteToFile(byte[]? byteArray)
+        static void WriteToFile(byte[]? byteArray,string pdfPath)
         {
             if (byteArray == null) return;
+
+            using (var writer = File.AppendText("result.txt"))
+            {
+                writer.WriteLine(pdfPath);
+                writer.WriteLine();
+            }
 
             foreach (byte b in byteArray)
             {
@@ -54,6 +60,7 @@ namespace PDFConverter
             }
             using (var writer = File.AppendText("result.txt"))
             {
+                writer.WriteLine();
                 writer.WriteLine();
                 writer.WriteLine("=============End of Byte Array============");
                 writer.WriteLine();
